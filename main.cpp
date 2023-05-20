@@ -19,7 +19,9 @@ T readValue(const char *prompt = "") {
         if (cin.fail()) {
             cout << "Incorrect input. Enter new value: ";
             cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             return value;
         }
     }
@@ -42,6 +44,10 @@ bool isOperation(const string &str) {
     return res != weights.end();
 }
 
+bool isLiteral(const string &str) {
+    auto res = variables.find(str);
+    return res != variables.end();
+}
 
 bool isNumber(const string &str) {
     string::const_iterator it = str.begin();
